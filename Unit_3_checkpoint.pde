@@ -1,3 +1,4 @@
+
 //pallette of colors (all are green)
 color tea  = #DBF4AD;
 color light  = #A9E190;
@@ -6,16 +7,22 @@ color moss  = #A5AA52;
 color olive  = #767522;
 color white  = #FFFFFF;
 color selectedColor;
+int toggle;
 
 void setup() {
   size(800,600);
   strokeWeight(5);
   stroke(olive);
+  toggle = 1;
   selectedColor = moss;
 }
 
 void draw() {
   background(tea);
+  
+  fill(white);
+  stroke(olive);
+  rect(300,30,200,30);
   
   //buttons
   if(dist(100,100,mouseX,mouseY) < 50) {
@@ -42,7 +49,13 @@ void draw() {
   stroke(olive);
   fill(selectedColor);
   square(300,100,400);
-}//end of draw======================================
+  
+  if(toggle > 0){
+    
+    
+}
+}
+//end of draw======================================
 
 void tactile (int x, int y, int r) {
   if(dist(x,y,mouseX,mouseY) < 50) {
@@ -52,7 +65,9 @@ void tactile (int x, int y, int r) {
   }
 }//end of draw======================================
 
-void mouseReleased() {
+void mouseReleased(){
+ 
+  {
   if(dist(100,100,mouseX,mouseY) < 50) {
     selectedColor = light;
   }
@@ -64,4 +79,9 @@ void mouseReleased() {
   if(dist(100,500,mouseX,mouseY) < 50) {
     selectedColor = moss;
   }
+  if(mouseX > 300 && mouseX < 500 && mouseY > 30 && mouseY < 60);{
+    toggle = toggle * -1;
+  }
+  
+}
 }
