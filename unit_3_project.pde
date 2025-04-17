@@ -9,7 +9,7 @@ color orange = #FF8000;
 color darkgreen = #006400;
 color cyan = #00FFFF;
 color pink = #FFC0CB;
-color brown = #A52A2A;
+color brown = #865100;
 color gray = #808080;
 color purple = #4B0082;
 color selectedColor;
@@ -129,8 +129,16 @@ void draw(){
   strokeWeight(5);
   stroke(black);
   fill(selectedColor);
-  square(950,50,50);
+  square(950,60,50);
   strokeWeight(thickness);
+  
+  //clear
+  fill(orange);
+  rect(1050,60,100,50);
+  fill(black);[
+  textAlign(CENTER,CENTER);
+  text("CLEAR", 45, 25);
+  
  
 
   
@@ -147,8 +155,13 @@ void tactile (int x, int y, int r) {
 
 void mouseDragged(){
   controlSlider();
+  if(mouseX > 0 && mouseX < 1500 && mouseY < 170 && mouseY > 0){
+  noStroke();
+  } else {
+  stroke(selectedColor);
   line(pmouseX,pmouseY,mouseX,mouseY);
   }
+}
 
 void mouseReleased(){
   controlSlider();
@@ -159,6 +172,39 @@ void mouseReleased(){
   if (dist(50,50,mouseX,mouseY) < 25){
     selectedColor = black;
   }
+  if (dist(115,85,mouseX,mouseY) < 25){
+    selectedColor = gray;
+  }
+  if (dist(200,50,mouseX,mouseY) < 25){
+    selectedColor = yellow;
+  }
+  if (dist(200,125,mouseX,mouseY) < 25){
+    selectedColor = green;
+  }
+  if (dist(275,50,mouseX,mouseY) < 25){
+    selectedColor = orange;
+  }
+  if (dist(275,125,mouseX,mouseY) < 25){
+    selectedColor = darkgreen;
+  }
+  if (dist(350,50,mouseX,mouseY) < 25){
+    selectedColor = red;
+  }
+  if (dist(350,125,mouseX,mouseY) < 25){
+    selectedColor = blue;
+  }
+  if (dist(425,50,mouseX,mouseY) < 25){
+    selectedColor = brown;
+  }
+  if (dist(425,125,mouseX,mouseY) < 25){
+    selectedColor = cyan;
+  }
+  if (dist(500,50,mouseX,mouseY) < 25){
+    selectedColor = purple;
+  }
+  if (dist(500,125,mouseX,mouseY) < 25){
+    selectedColor = pink;
+  }
 }
 
 void controlSlider(){
@@ -167,9 +213,5 @@ void controlSlider(){
   }
 }
 
-
-
-// ----- Mouse Moved Handler -----
-// Add this function (if not already present) to update coordinates without leaving a trail:
 
   
