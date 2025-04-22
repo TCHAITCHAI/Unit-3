@@ -50,6 +50,16 @@ void draw(){
   circle(sliderX,85,30);
   strokeWeight(5);
   
+  //clear
+  fill(0);
+  strokeWeight(5);
+  fill(orange);
+  rect(1050,60,100,50);
+  fill(black);
+  textSize(30);
+  textAlign(CENTER,CENTER);
+  text("CLEAR", 1100, 85);
+  
   //buttons
   //black
   tactile(50,50,25);
@@ -130,14 +140,9 @@ void draw(){
   stroke(black);
   fill(selectedColor);
   square(950,60,50);
-  strokeWeight(thickness);
+  strokeWeight(5);
   
-  //clear
-  fill(orange);
-  rect(1050,60,100,50);
-  fill(black);[
-  textAlign(CENTER,CENTER);
-  text("CLEAR", 45, 25);
+
   
  
 
@@ -161,6 +166,8 @@ void mouseDragged(){
   stroke(selectedColor);
   line(pmouseX,pmouseY,mouseX,mouseY);
   }
+  
+ 
 }
 
 void mouseReleased(){
@@ -204,6 +211,11 @@ void mouseReleased(){
   }
   if (dist(500,125,mouseX,mouseY) < 25){
     selectedColor = pink;
+  }
+  if(mouseX > 1050 && mouseX < 1150 && mouseY > 60 && mouseY < 110){
+  noStroke();
+  fill(255);
+  rect(0,170,1500,730);
   }
 }
 
