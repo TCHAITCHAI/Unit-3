@@ -54,7 +54,7 @@ void draw() {
   strokeWeight(thickness);
   line(600, 85, 900, 85);
   circle(sliderX, 85, 30);
-  strokeWeight(5);
+  
 
   //clear
   fill(0);
