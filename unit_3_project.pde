@@ -46,7 +46,7 @@ void draw() {
   line(0, 170, 1500, 170);
   line(3, 0, 3, 170);
   line(1497, 0, 1497, 170);
-  strokeWeight(5);
+
 
   //slider
   thickness = map(sliderX, 600, 900, 1, 10);
@@ -54,7 +54,7 @@ void draw() {
   strokeWeight(thickness);
   line(600, 85, 900, 85);
   circle(sliderX, 85, 30);
-  
+
 
   //clear
   fill(0);
@@ -144,7 +144,12 @@ void draw() {
 
   //ashtonhall
   ashtonhallOnOff();
+  if (mouseX > 1200 && mouseX < 1300 && mouseY > 40 && mouseY < 140) {
   fill(255);
+  } else {
+  fill(toolbar);
+  }
+  strokeWeight(5);
   rect(1200, 40, 100, 100);
   image(ashtonhall, 1200, 40, 100, 100);
 
@@ -154,6 +159,27 @@ void draw() {
   fill(selectedColor);
   square(950, 60, 50);
   strokeWeight(5);
+  
+  //save
+  if (mouseX > 1350 && mouseX < 1450 && mouseY > 40 && mouseY < 80) {
+  fill(255);
+  } else {
+  fill(orange);
+  }
+  rect(1350, 40, 100, 40);
+  fill(0);
+  text("SAVE", 1400, 60, 15);
+  
+  //load
+  if (mouseX > 1350 && mouseX < 1450 && mouseY > 100 && mouseY < 140) {
+  fill(255);
+  } else {
+  fill(orange);
+  }
+  rect(1350, 100, 100, 40);
+  fill(0);
+  text("LOAD", 1401, 120, 15);
+  
 }
 
 //end of draw================================
@@ -178,17 +204,27 @@ void ashtonhallOnOff() {
 
 void mouseDragged() {
   controlSlider();
-  if (ashtonhallOn == false) {
 
+  if (ashtonhallOn == false) {
+    if (mouseX > 0 && mouseX < 1500 && mouseY < 170 && mouseY > 0) {
+      noStroke();
+    } else {
+    imageMode(CENTER);
+    image(ashtonhall, mouseX, mouseY, thickness*10, thickness*10);
+    imageMode(CORNER);
+    }
+  }
+
+  if (ashtonhallOn == true) {
     if (mouseX > 0 && mouseX < 1500 && mouseY < 170 && mouseY > 0) {
       noStroke();
     } else {
       stroke(selectedColor);
+      strokeWeight(thickness);
       line(pmouseX, pmouseY, mouseX, mouseY);
     }
   }
 }
-  
 
 
 
@@ -243,11 +279,42 @@ void mouseReleased() {
   if (mouseX > 1200 && mouseX < 1300 && mouseY > 40 && mouseY < 140) {
     ashtonhallOn = !ashtonhallOn;
   }
+  if (ashtonhallOn == false) {
+    imageMode(CENTER);
+    image(ashtonhall, mouseX, mouseY, thickness*10, thickness*10);
+    imageMode(CORNER);
+  }
+  //SAVE
+  if (mouseX > 1350 && mouseX < 1450 && mouseY > 40 && mouseY < 80) {
+    selectOutput("Choose a name for your new image file", "save image");
+  }
+  //LOAD
+  if (mouseX > 1350 && mouseX < 1450 && mouseY > 100 && mouseY < 140) {
+    selectInput("Choose an image to open", "open image");
+  }
 }
-
 
 void controlSlider() {
   if (mouseX > 600 && mouseX < 900 && mouseY < 110 && mouseY > 60) {
     sliderX = mouseX;
+  }
+}
+
+void saveImage(File f) {
+  if (f != null) {
+    PImage canvas = get(71,1,width-71,height-1);
+    canvas.save(f.getAbsolutePath());
+  }
+}
+
+void openImage(File f) {
+  if (f !=null) {
+    //KLUDGE
+    int n = 0;
+    while (n < 50) {
+      PImage pic = loadImage(f.getPath());
+      image(pic,0,0);
+      n = n + 1;
+    }
   }
 }
