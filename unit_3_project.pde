@@ -286,11 +286,11 @@ void mouseReleased() {
   }
   //SAVE
   if (mouseX > 1350 && mouseX < 1450 && mouseY > 40 && mouseY < 80) {
-    selectOutput("Choose a name for your new image file", "save image");
+    selectOutput("Choose a name for your new image file", "saveImage");
   }
   //LOAD
   if (mouseX > 1350 && mouseX < 1450 && mouseY > 100 && mouseY < 140) {
-    selectInput("Choose an image to open", "open image");
+    selectInput("Choose an image to open", "openImage");
   }
 }
 
@@ -302,7 +302,7 @@ void controlSlider() {
 
 void saveImage(File f) {
   if (f != null) {
-    PImage canvas = get(71,1,width-71,height-1);
+    PImage canvas = get(0, 170, 1500, 730);
     canvas.save(f.getAbsolutePath());
   }
 }
